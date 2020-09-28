@@ -13,3 +13,6 @@
 
 ## NumPy
 - 파이썬 모듈인 NumPy에 대해 NumPy documentation을 참고해서 넣습니다.
+
+## PEP
+- Python Enhancement Proposal들에 대해서 번역 및 정리합니다.
