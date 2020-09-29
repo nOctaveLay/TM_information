@@ -1,6 +1,6 @@
-# for statement
+# For statement
 
-for statement에 대한 것이 궁금해져서 해보았다.
+For statement에 대한 것이 궁금해져서 해보았다.
 우선 간단한 for statement를 준비한다.
 ``` python3
 def name():
@@ -16,6 +16,7 @@ import dis
 ```
 
 결과물은 다음과 같다.
+```
   2           0 SETUP_LOOP              24 (to 26)
               2 LOAD_GLOBAL              0 (range)
               4 LOAD_CONST               1 (10)
@@ -32,13 +33,13 @@ import dis
         >>   24 POP_BLOCK
         >>   26 LOAD_CONST               0 (None)
              28 RETURN_VALUE
-
-여기서 2랑 3은 line number다.
-3번째 줄은 print(x)이므로 굳이 상관하지 않고, 2번만 보면,
+```
+- 여기서 2랑 3은 line number다.
+- 3번째 줄은 print(x)이므로 굳이 상관하지 않고, 2번만 보면,
 GET_ITER와 FOR_ITER로 작동하고 있는 것을 알 수 있다.
-GET_ITER는 Implements TOS = iter(TOS)이고, (TOS는 Top Of Stack을 의미한다.)
+- GET_ITER는 Implements TOS = iter(TOS)이고, (TOS는 Top Of Stack을 의미한다.)
 
-* iter(object[,sentinel]):
+* ```iter(object[,sentinel])```:
 	1. iterator 객체를 돌려준다.
 	2. sentinel이 없으면, object는 이터레이션 프로토콜 (\_\_iter\_\_() method)를 지원하는 collection 객체거나 시퀀스 프로토콜 (0에서 시작되는 정수 인자를 받는 \_\_getitem\_\_() method)를 지원해야 한다.
 		만약 둘 다 없을 경우, TypeError가 일어난다.
@@ -48,13 +49,13 @@ GET_ITER는 Implements TOS = iter(TOS)이고, (TOS는 Top Of Stack을 의미한�
 즉 GET_ITER에서 TOS가 iter의 2번째 조건을 만족하면 그 프로토콜을 반환한다는 뜻이다. 
 다시 말하자면, for X in Y에서 Y가 iterable이기만 하면, 문제 없이 잘 돌아간다는 뜻이기도 하다.
 
-FOR_ITER(delta)는 TOS는 iterator고, \_\_next\_\_() method를 부른다.
-만약 새로운 Value를 산출한다면, stack에 쌓고, iterator는 그것의 밑에 둔 상태로 남겨둔다.
-만약 iterator가 고갈되었다고 한다면, TOS는 pop되고, bytecode counter는 delta에 의해 증가된다.
+- FOR_ITER(delta)는 TOS는 iterator고, \_\_next\_\_() method를 부른다.
+- 만약 새로운 Value를 산출한다면, stack에 쌓고, iterator는 그것의 밑에 둔 상태로 남겨둔다.
+- 만약 iterator가 고갈되었다고 한다면, TOS는 pop되고, bytecode counter는 delta에 의해 증가된다.
 
 
-알고 싶은 것은, enumerate같이, iterator인 객체를 반환하는 (그러나 print로는 enumerate 객체의 위치만 알 수 있는) 함수들은 과연 어떻게 반응하는 지 보는 것이었다.
-iterator한 객체를 만들기 귀찮아서, 파일을 open했다.
+- 알고 싶은 것은, enumerate같이, iterator인 객체를 반환하는 (그러나 print로는 enumerate 객체의 위치만 알 수 있는) 함수들은 과연 어떻게 반응하는 지 보는 것이었다.
+- iterator한 객체를 만들기 귀찮아서, 파일을 open했다.
 
 ```python3
 def name():
@@ -100,7 +101,7 @@ def name():
              60 RETURN_VALUE
 
 ```
-결론적으로 말하자면, iter()가 정상적으로 작동하기 때문에, 별반 문제가 없었다.
-즉, iter()만 작동하는 모든 object라면, for x in Y에서 Y부분에 어떤 object를 넣어도 상관없다는 것이다.
+- 결론적으로 말하자면, iter()가 정상적으로 작동하기 때문에, 별반 문제가 없었다.
+- 즉, iter()만 작동하는 모든 object라면, for x in Y에서 Y부분에 어떤 object를 넣어도 상관없다는 것이다.
 
 출처 : <https://docs.python.org/ko/3/library/functions.html#iter>
