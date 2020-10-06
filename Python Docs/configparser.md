@@ -10,24 +10,25 @@
 -	Parser’s mode에선, 빈칸이 많은 라인을 가지는 value의 부분으로 다뤄지거나, 무시된다.
 2.	Interpolation of values
 -	Interpolation 지원
-	Get() call로부터 value가 나오기 전에 preprocess될 수 있다.
+  - Get() call로부터 value가 나오기 전에 preprocess될 수 있다.
 -	Class configparser.BasicInterpolation
-	ConfigParserdp 의해 사용된다.
-	V같은 section안에 있는 다른 value를 참조하는 format string을 포함하는 value들과 special default 안에 있는 value들을 포함할 수 있도록 한다.
+  - ConfigParser에 의해 사용된다.
+  - V같은 section안에 있는 다른 value를 참조하는 format string을 포함하는 value들과 special default 안에 있는 value들을 포함할 수 있도록 한다.
 home_dir: /Users
 my_dir: %(home_dir)s/lumberjack
 my_pictures: %(my_dir)s/Pictures
 
 [Escape]
 gain: 80%%  # use a %% to escape the % sign (% is the only character that needs to be escaped)
-	ConfigParser가 %(home_dir)s를 /User로 품
-	레퍼런스의 chain으로 사용되는 key들은 configuration file에서 어떤 특정한 순서로 분류되지 않는다.
-	Interpolation이 설정되어 있지 않다면 (None이라면) my_picture은 단순히 %(my_dir)s/Pictures가 return이 될 것이다.
+  - ConfigParser가 %(home_dir)s를 /User로 품
+  - 레퍼런스의 chain으로 사용되는 key들은 configuration file에서 어떤 특정한 순서로 분류되지 않는다.
+  - Interpolation이 설정되어 있지 않다면 (None이라면) my_picture은 단순히 %(my_dir)s/Pictures가 return이 될 것이다.
 -	Class configparser.ExtendedInterpolation
-	Interpolation의 대안책
-	Zc.buildout 안에서 instance를 위해 쓰이는 더 나은 문법
-	${section:option} : 다른 section에서 value를 참조하기 위함
-	Section: 이 생략되면 현재 section으로 간주함. (혹은 special section의 default value로 간주)
+  - Interpolation의 대안책
+  - Zc.buildout 안에서 instance를 위해 쓰이는 더 나은 문법
+  - ${section:option} : 다른 section에서 value를 참조하기 위함
+  - Section: 이 생략되면 현재 section으로 간주함. (혹은 special section의 default value로 간주)
+```
 [Common]
 home_dir: /Users
 library_dir: /Library
@@ -44,6 +45,6 @@ last_name: Jackson
 my_dir: ${Common:home_dir}/twosheds
 my_pictures: ${my_dir}/Pictures
 python_dir: ${Frameworks:path}/Python/Versions/${Frameworks:Python}
-
+```
 -	출처 : https://docs.python.org/3/library/configparser.html#supported-ini-file-structure
 -	[1] : Config parsers allow for heavy customization 
