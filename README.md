@@ -1,8 +1,8 @@
 # TM_information
 
-- 하루에 하나씩 배웠던 내용 적기
+- Documentation 
 - 주로 논문이 아닌 docs나 책에서 배운 내용을 적습니다.
-- 파이썬 내용들을 주로 적습니다.
+- 책과 docs는 copyright에 위배되지 않는 선에서 적습니다.
 
 ## Fluent Python
 - Fluent Python에 대한 내용을 적습니다.
