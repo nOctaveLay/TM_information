@@ -110,7 +110,7 @@ $ git commit -m [message]
   - ex : github, bitbucket
 - 자신이 git을 저장할 장소를 설정한다.
 - 처음에 생성했을 경우, remote name을 origin으로 많이 설정한다.
-- 보통 github는 repository를 생성할 때, url을 ```https://github.com/[Repo leader 닉네임]/[Repo name].git```으로 생성한다. 
+- 보통 github는 repository를 생성할 때, url을 ```https://github.com/[Repo leader 닉네임]/[Repo name].git``` 혹은 ```git@github.com:[Repo leader 닉네임]/[repo name].git```로 생성한다. 
 	
 	```$ git remote add origin https://github.com/[Repo leader 닉네임]/[Repo name].git```
 
@@ -160,24 +160,29 @@ $ git commit -m [message]
 
 ### 리모트 저장소에 push하기
 **git push [리모트 저장소] [브랜치 이름]**
-- 리모트 저장소에 작업한 코드를 올린다.
+- 리모트 저장소에 git에 들어가 있는 code data를 올린다.
+	- 따라서 git에 변경된 사항이 없을 경우 error가 발생한다.
 - clone한 리모트 저장소에 쓰기 권한이 있을 때 가능하다.
 - 동시에 두 사람이 push할 수 없다.
 	- 다른 사람이 작업한 것을 먼저 가져와서 merge한 다음에 push할 수 있다.
-
+	
 ### 리모트 저장소 살펴보기
 **git remote show [리모트 저장소]**
 - 리모트 저장소의 구체적인 정보를 확인할 수 있다.
 - 리모트 저장소의 URL과 추적하는 브랜치를 보여준다.
 - git pull 명령을 실행했을 때 master branch와 merge할 브랜치가 무엇인지 보여준다.
-git push : 온라인 상에 git을 올린다. <br><br>
-* 주로 git add [file name] 한 뒤 git commit -m "message" 를 하고 git push를 한다.<br><br>
-<h3>추가 사항</h3><br>
-<h4>address에 관하여 </h4><br><br>
-<h5>https://를 쓰는 경우</h5> https://github.com/[github 아이디]/[github에 올릴 레포].git<br>
-<h5>ssh키를 쓰는 경우</h5> git@github.com:[github 아이디]/[github에 올릴 레포].git<br><br><br>
-<h4>명령어에 관하여 </h4><br>
-<h5>git remote set-url origin [address] </h5> 깃의 repo를 바꾸는 명령어이다. 이 명령어를 실행하면 [address]로 origin의 주소가 바뀐다.<br>
+
+### 리모트 저장소 이름을 바꾸거나 리모트 저장소를 삭제하기
+**git remote rename [리모트 저장소 이름] [바꿀 저장소 이름]**
+- 리모트 저장소 이름 바꾸기
+
+**git remote remove** 또는 **git remote rm**
+- 리모트 저장소 삭제
+- 해당 리모트 저장소에 관련된 추적 브랜치 정보나 모든 설정 내용도 함께 사라진다.
+
+**git remote set-url origin [address]**
+- 깃의 repo url을 바꾸는 명령어이다. 
+- 이 명령어를 실행하면 [address]로 origin의 주소가 바뀐다.
 
 <h1>Normal </h1><br>
 git 브랜치란? 특정 커밋에 대한 참조이다.<br><br>
