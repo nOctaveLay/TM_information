@@ -58,7 +58,7 @@ $ git config --global user.email "test@example.com"
 - 특정 레포에서만 user를 달리하고 싶다면 ```--global```옵션을 빼면 된다.
 
 ### Editor
-- 잘 쓸 일 없음 (대부분의 Pycharm이나 VScode에서 다 지원해줌
+- 잘 쓸 일 없음 (대부분의 Pycharm이나 VScode에서 다 지원해줌)
 - git 자체에서 text editor를 쓰고 싶다면
 	```
 	$ git config --global core.editor emacs
@@ -104,10 +104,26 @@ $ git commit -m [message]
 	$ git add *.c
 	$ git commit -m "add C file all"
 	```
-**3. git remote add origin [address]**
+**4. git remote add [remote name] [address]**
 - 리모트 저장소? : 인터넷이나 네트워크 어딘가에 있는 저장소를 말한다.
-  - ex : github, bit
-  
+  - ex : github, bitbucket
+- 자신이 git을 저장할 장소를 설정한다.
+- 처음에 생성했을 경우, remote name을 origin으로 많이 설정한다.
+- 보통 github는 repository를 생성할 때, url을 'https://github.com/[Repo leader 닉네임]/[Repo name].git'으로 생성한다. 
+	```$ git remote add origin https://github.com/[Repo leader 닉네임]/[Repo name].git```
+
+### 다른 Repository에서 가져오는 경우
+- 다른 repository의 copy를 가져오는 것이다.
+- ```git clone``` 명령어를 쓴다.
+- **checkout 명령어가 아니다.**
+- 그 repo에 있던 모든 history가 default로 git에 가져와진다.
+
+**git clone [url]**
+- url에 있는 git이 가져와진다.
+- clone한 정보를 새로운 폴더에 저장하고 싶다면 ```git clone [url] [새로운 폴더 이름]```을 써라.
+- url 중에서는 https 기반이 아닌, ssh기반의 ```git://```이나 ```user@server:path/to/repo.git```의 형태도 볼 수 있다.
+- 이를 할 경우, remote 저장소가 자동으로 등록된다.
+
 자신이 git을 저장할 장소를 설정한다. github에 있는 repository에 저장하려고 한다면 'https://github.com/[자기 닉네임]/[자기 git repository].git'이라고 [address]자리에 적으면 된다.<br>
 예시)git remote add origin https://github.com/van-st/asdf.git<br><br>
 <h5>git clone [address]</h5> git에 올려진 repository에 있는 내용을 자신의 작업창에 옮기고 싶을 때 쓴다. 여기서 말하는 address는 repository의 address를 나타낸다.<br><br><br>
