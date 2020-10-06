@@ -109,7 +109,8 @@ $ git commit -m [message]
   - ex : github, bitbucket
 - 자신이 git을 저장할 장소를 설정한다.
 - 처음에 생성했을 경우, remote name을 origin으로 많이 설정한다.
-- 보통 github는 repository를 생성할 때, url을 'https://github.com/[Repo leader 닉네임]/[Repo name].git'으로 생성한다. 
+- 보통 github는 repository를 생성할 때, url을 ```https://github.com/[Repo leader 닉네임]/[Repo name].git```으로 생성한다. 
+	
 	```$ git remote add origin https://github.com/[Repo leader 닉네임]/[Repo name].git```
 
 ### 다른 Repository에서 가져오는 경우
@@ -124,12 +125,38 @@ $ git commit -m [message]
 - url 중에서는 https 기반이 아닌, ssh기반의 ```git://```이나 ```user@server:path/to/repo.git```의 형태도 볼 수 있다.
 - 이를 할 경우, remote 저장소가 자동으로 등록된다.
 
-자신이 git을 저장할 장소를 설정한다. github에 있는 repository에 저장하려고 한다면 'https://github.com/[자기 닉네임]/[자기 git repository].git'이라고 [address]자리에 적으면 된다.<br>
-예시)git remote add origin https://github.com/van-st/asdf.git<br><br>
-<h5>git clone [address]</h5> git에 올려진 repository에 있는 내용을 자신의 작업창에 옮기고 싶을 때 쓴다. 여기서 말하는 address는 repository의 address를 나타낸다.<br><br><br>
-<h5>git add [file name] </h5> [file name] 파일을 git 저장소에 첨부한다. <br><br>
-git commit -m "[message]" : commit message를 남긴 채로 커밋한다.<br><br>
-*주의* : 커밋 없이는 git push를 할 수 없다. git에 더해져 있는 내용들이 확정된 것인지 아닌 지 알 수 없기 때문이다.<br><br>
+## 리모트 저장소
+- 리모트 저장소? : 인터넷이나 네트워크 어딘가에 있는 저장소를 말한다.
+- 참고 : remote 저장소가 반드시 네트워크나 인터넷을 통해 있어야 한다는 것을 의미하는 것은 아니다.
+	- 그렇다고 하더라도, Push나 Pull 같은 기능은 동일하게 사용한다.
+	
+### 리모트 저장소 확인하기
+**git remote**
+- 현재 프로젝트에 등록된 리모트 저장소를 확인할 수 있다.
+- 저장소를 clone하면 'origin'이라는 리모트 저장소가 자동으로 등록된다.
+- ```-v``` 
+	- 단축 이름과 URL을 함께 볼 수 있다.
+	- 리모트 저장소가 여러개라면 여러개의 remote 저장소를 보여준다.
+	- Push 가능 권한까지는 확인할 수 없다.
+	
+**git remote add [단축이름] [address]**
+- 리모트 저장소? : 인터넷이나 네트워크 어딘가에 있는 저장소를 말한다.
+  - ex : github, bitbucket
+- 자신이 git을 저장할 장소를 설정한다.
+- 처음에 생성했을 경우, remote name을 origin으로 많이 설정한다.
+- 보통 github는 repository를 생성할 때, url을 ```https://github.com/[Repo leader 닉네임]/[Repo name].git```으로 생성한다. 
+	
+	```$ git remote add origin https://github.com/[Repo leader 닉네임]/[Repo name].git```
+
+### 리모트 저장소 가져오기
+**git fetch [remote name]**
+- 로컬에는 없지만 리모트 저장소에 있는 모든 데이터를 가져온다.
+- clone하면 리모트 저장소를 origin이라는 이름으로 추가하기 때문에, git fetch origin이라는 명령을 실행하면 clone 한 이후 수정된 것을 모두 가져온다.
+- 자동으로 merge하지는 않는다.
+
+**git pull [remote name]**
+- 리모트 저장소 브랜치에서 데이터를 가져올 뿐만 아니라 자동으로 로컬 브랜치와 merge 시킨다.
+
 git push : 온라인 상에 git을 올린다. <br><br>
 * 주로 git add [file name] 한 뒤 git commit -m "message" 를 하고 git push를 한다.<br><br>
 <h3>추가 사항</h3><br>
