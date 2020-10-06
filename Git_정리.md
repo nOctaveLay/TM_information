@@ -3,7 +3,7 @@
 - 추가로 github를 실제로 프로젝트에서 써보면서 익혔던 내용들에 대해서도 정리합니다.
 - 실제로 인코딩된 내용을 보니 그렇게 깔끔하지 못해서 정리합니다.
 
-# 기본 지식
+# 이론
 - git은 version control을 하기 위해 만들어진 도구이다.
   - Version control이란?
     - File에서 일어난 모든 변화를 기록해서 나중에 특정 version을 불러올 수 있는 것.
@@ -21,21 +21,95 @@
     - File correption x, 정보 잃지 x
 - Git은 일반적으로 data만 저장한다.
   - 따라서 data를 잃기 매우 어렵다.
+
 # 실전
-## Basic
-### GIT을 처음 사용할 시
-**1. git init** 
-- git을 처음 사용할 때에는 git 저장소라는 것이 필요하다.
-- 이 저장소는 git의 "버전 저장소"이다.
+## GIT을 처음 사용할 시
+### git config
+- configuration variables을 얻거나 설정할 수 있다.
+  - configuration variable : Git이 어떻게 보이고 어떻게 동작하는 지에 대한 모든 방법을 control 가능함
+
+  **1. [path]/etc/gitconfig**
+  - 시스템과 repository에 있는 모든 유저들에게 적용되는 value를 포함
+  - ```--system``` :  이 파일로부터 읽거나 쓸 수 있다.
+  - 파일을 바꾸기 위해서 관리자나 슈퍼유저 권한이 필요
+
+  **2. ```~/.gitconfig``` or ```~/.config/git/config```**
+  - user에게만 적용되는 설정
+  - ```--global``` : Git을 읽고 쓸 수 있다.
+    - repository(이하 레포)의 모든것에 영향을 미침
+
+  **3. 현재 사용하는 레포가 뭐든 Git directory에 있는 ```config```**
+  - ```.git/config```와 동일하다.
+  - 단일 레포에 설정됨
+  - ```--local``` : Git을 강제로 읽고 쓰게 할 수 있다. (실제론 이게 기본값)
+
+- 각각의 레벨은 이전 level에 있는 value를 덮어씌운다.
+- 즉, .git/config에 있는 value가 [path]/etc/gitconfig를 덮어씌운다.
+- 모든 세팅을 보는 방법 
+
+	```$ git config --list --show-origin```
+### Identity
+- user name과 email address를 세팅하는 방법
+```
+$ git config --global user.name "clear"
+$ git config --global user.email "test@example.com"
+```
+- ```--global``` 옵션을 줬으니 이 유저자체에 저장되는 속성, 따라서 한 번만 해주면 됨
+- 특정 레포에서만 user를 달리하고 싶다면 ```--global```옵션을 빼면 된다.
+
+### Editor
+- 잘 쓸 일 없음 (대부분의 Pycharm이나 VScode에서 다 지원해줌
+- git 자체에서 text editor를 쓰고 싶다면
+	```
+	$ git config --global core.editor emacs
+	```
+- notepad++를 쓰고 싶을 때
+	```
+	$ git config --global core.editor "'C:/Program Files/Notepad++/notepad++.exe' -multiInst -notabbar -nosession -noPlugin"
+	```
+
+### Default Branch Name
+```$ git config --global init.defaultBranch main```
+- 알겠지만, global이기 때문에 user 수준에서 branch default이다.
+
+## GIT 저장소를 처음 사용할 시
+- Git 저장소를 얻는 방법은 두 가지가 있다.
+  + local directory를 Git repository로 바꾸는 경우
+  + 다른 Git repository를 clone하는 경우
+
+### 이미 존재하는 폴더를 Repository로 초기화하는 경우
+**1. 일단 그 폴더로 들어간다.**
+- ```cd``` 명령어 사용
+
+**2. git init** 
+- git을 처음 사용할 때에는 버전 저장소를 만들어야 한다. (git 저장소)
+- 이 경우 ```.git``` 파일이 생성된다. (아직 파일 추적은 안 함)
+- 이는 master branch로 적용된다 (**곧 main branch로 바뀐다. 인권문제 이슈**)
 - 이는 작업할 때는 안보이지만, git에서 일어난 변경사항을 모두 담고있는 폴더이다. 
 - 참고: 이 git폴더를 지울 때에는 **관리자 권한 필요**
 
-**2.git remote add origin [address]**
+**3. git에 파일 추가**
+```
+$ git add [file]
+$ git add LICENSE
+$ git commit -m [message]
+```
+- **commit**은 폴더에서 변경된 내용을 저장하는 단위이다.
+- ```git commit```만 쓸 경우, 메세지를 쓸 editor가 열린다.
+- ```-m``` 커밋에 에디터를 열지 않고 메세지를 추가하는 옵션, 어떤 변화가 일어났는지를 주로 짤막하게 적는다.
+- 이전 커밋에 변경 사항을 추가할 경우 
+	```git commit --amend```
+- 예시, C파일을 추가하고 commit할 경우
+	```
+	$ git add *.c
+	$ git commit -m "add C file all"
+	```
+**3. git remote add origin [address]**
 - 리모트 저장소? : 인터넷이나 네트워크 어딘가에 있는 저장소를 말한다.
   - ex : github, bit
+  
 자신이 git을 저장할 장소를 설정한다. github에 있는 repository에 저장하려고 한다면 'https://github.com/[자기 닉네임]/[자기 git repository].git'이라고 [address]자리에 적으면 된다.<br>
 예시)git remote add origin https://github.com/van-st/asdf.git<br><br>
-<h5>git commit</h5> 메세지 없이 그냥 commit하는 것. commit은 git에 add한 것을 확정지을 때 쓴다. <br><br><br>
 <h5>git clone [address]</h5> git에 올려진 repository에 있는 내용을 자신의 작업창에 옮기고 싶을 때 쓴다. 여기서 말하는 address는 repository의 address를 나타낸다.<br><br><br>
 <h5>git add [file name] </h5> [file name] 파일을 git 저장소에 첨부한다. <br><br>
 git commit -m "[message]" : commit message를 남긴 채로 커밋한다.<br><br>
