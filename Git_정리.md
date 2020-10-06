@@ -87,6 +87,7 @@ $ git config --global user.email "test@example.com"
 - 이는 master branch로 적용된다 (**곧 main branch로 바뀐다. 인권문제 이슈**)
 - 이는 작업할 때는 안보이지만, git에서 일어난 변경사항을 모두 담고있는 폴더이다. 
 - 참고: 이 git폴더를 지울 때에는 **관리자 권한 필요**
+- 참고 : 이 때 master branch가 새로 생성된다.
 
 **3. git에 파일 추가**
 ```
@@ -157,6 +158,18 @@ $ git commit -m [message]
 **git pull [remote name]**
 - 리모트 저장소 브랜치에서 데이터를 가져올 뿐만 아니라 자동으로 로컬 브랜치와 merge 시킨다.
 
+### 리모트 저장소에 push하기
+**git push [리모트 저장소] [브랜치 이름]**
+- 리모트 저장소에 작업한 코드를 올린다.
+- clone한 리모트 저장소에 쓰기 권한이 있을 때 가능하다.
+- 동시에 두 사람이 push할 수 없다.
+	- 다른 사람이 작업한 것을 먼저 가져와서 merge한 다음에 push할 수 있다.
+
+### 리모트 저장소 살펴보기
+**git remote show [리모트 저장소]**
+- 리모트 저장소의 구체적인 정보를 확인할 수 있다.
+- 리모트 저장소의 URL과 추적하는 브랜치를 보여준다.
+- git pull 명령을 실행했을 때 master branch와 merge할 브랜치가 무엇인지 보여준다.
 git push : 온라인 상에 git을 올린다. <br><br>
 * 주로 git add [file name] 한 뒤 git commit -m "message" 를 하고 git push를 한다.<br><br>
 <h3>추가 사항</h3><br>
@@ -165,8 +178,7 @@ git push : 온라인 상에 git을 올린다. <br><br>
 <h5>ssh키를 쓰는 경우</h5> git@github.com:[github 아이디]/[github에 올릴 레포].git<br><br><br>
 <h4>명령어에 관하여 </h4><br>
 <h5>git remote set-url origin [address] </h5> 깃의 repo를 바꾸는 명령어이다. 이 명령어를 실행하면 [address]로 origin의 주소가 바뀐다.<br>
-<br>
-<br>
+
 <h1>Normal </h1><br>
 git 브랜치란? 특정 커밋에 대한 참조이다.<br><br>
 브랜치를 많이 만들어도 메모리나 디스크 공간에 부담이 되지 않기 때문에, 많이 만들어도 된다. <br><br>
