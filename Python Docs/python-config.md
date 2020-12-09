@@ -11,8 +11,8 @@
 -	Interpolation 지원
   - Get() call로부터 value가 나오기 전에 preprocess될 수 있다.
 -	Class configparser.BasicInterpolation
-  - ConfigParserdp 의해 사용된다.
-  - V같은 section안에 있는 다른 value를 참조하는 format string을 포함하는 value들과 special default 안에 있는 value들을 포함할 수 있도록 한다.
+  - ConfigParser에 의해 사용된다.
+  - 같은 section안에 있는 다른 value를 참조하는 format string을 포함하는 value들과 special default 안에 있는 value들을 포함할 수 있도록 한다.
 ```
 home_dir: /Users
 my_dir: %(home_dir)s/lumberjack
