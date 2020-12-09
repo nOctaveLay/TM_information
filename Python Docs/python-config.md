@@ -1,5 +1,5 @@
 # Python Config file 관리
-1.	Supported INI File Structure
+##	Supported INI File Structure
 -	Configuration file은 section으로 구성되고, [section] header를 붙인다.
 -	[section] header 밑에는 key/value entries가 따라오며, ([1]에 의해 ‘=’이나 ‘:’로 구분된다. )
 -	기본적으로 Section name은 케이스에 민감하지만, key들은 그렇지 않다.
@@ -7,7 +7,7 @@
 -	Value 생략 가능, 이 경우 구분기호도 생략 가능
 -	Value는 첫 번째 줄보다 indentation이 들어가 있으면 여러 줄을 쓸 수 있다. 
 -	Parser’s mode에선, 빈칸이 많은 라인을 가지는 value의 부분으로 다뤄지거나, 무시된다.
-2.	Interpolation of values
+##	Interpolation of values
 -	Interpolation 지원
   - Get() call로부터 value가 나오기 전에 preprocess될 수 있다.
 -	Class configparser.BasicInterpolation
