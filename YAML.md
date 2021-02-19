@@ -19,7 +19,8 @@
   ```
   a_json_style_map: {"K": "V"}<br />
   a_json_style_sequence: ["pink", "red", "red", "cat", 123, 234, 345]
-```
+  ```
+
 - Spaces/indenting
   - should indent with space
   - 
