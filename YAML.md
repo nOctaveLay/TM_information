@@ -23,8 +23,14 @@
 
 - Spaces/indenting
   - should indent with space
-  - 
-  
+  - Must be spaces between element part
+  - ```Key: Value``` is correct
+  - ```Key:Value``` is not correct (no space after the colon)
+
+- Begin/End document
+  - defining the start and end of the document is optional
+  - start : '---' 
+  - end : '...'
   
 ## 출처
 - [5분](https://www.codeproject.com/Articles/1214409/Learn-YAML-in-five-minutes)
